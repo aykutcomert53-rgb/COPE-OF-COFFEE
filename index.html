@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opening Instagram…</title>
+<style>
+  body { font-family: -apple-system, system-ui, sans-serif; text-align: center; padding: 3rem 1rem; }
+  a { display: inline-block; margin-top: 1rem; padding: .8rem 1.4rem; background: #e1306c; color: #fff; border-radius: 8px; text-decoration: none; }
+</style>
+</head>
+<body>
+<p>Opening Instagram…</p>
+<a id="fallback" href="https://instagram.com/copeof_coffee">Tap here if nothing happens</a>
+<script>
+var u = "copeof_coffee", ua = navigator.userAgent;
+if (/android/i.test(ua)) {
+  location.href = "intent://instagram.com/_u/" + u +
+    "#Intent;package=com.instagram.android;scheme=https;" +
+    "S.browser_fallback_url=https%3A%2F%2Finstagram.com%2F" + u + ";end";
+} else if (/iphone|ipad/i.test(ua)) {
+  location.href = "instagram://user?username=" + u;
+  setTimeout(function () { location.href = "https://instagram.com/" + u; }, 1500);
+} else {
+  location.href = "https://instagram.com/" + u;
+}
+</script>
+</body>
+</html>
